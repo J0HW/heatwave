@@ -177,7 +177,7 @@ showCurrentLocationMarker(latitude, longitude);
 getCurrentAddress(latitude, longitude);
 
 // CSV 파일 로드
-fetch('./HeatWaveShelter1.csv')
+fetch('./HeatWaveShelter1.csv','./HeatWaveShelter2.csv')
   .then(response => response.text())
   .then(data => {
     markers = parseCSVData(data);
@@ -210,7 +210,7 @@ fetch('./HeatWaveShelter1.csv')
       showCurrentLocationMarker(latitude, longitude);
 
       // CSV 파일 로드
-      fetch('./HeatWaveShelter1.csv')
+      fetch('./HeatWaveShelter1.csv','./HeatWaveShelter2.csv')
         .then(response => response.text())
         .then(data => {
           markers = parseCSVData(data);
