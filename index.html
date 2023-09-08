@@ -63,20 +63,110 @@
     }
 
 /*상단 배너 크기*/
-    .menu {
-      width: 5000px;
-      height: 50px;
-      text-align: center;
-      max-width: 100%;
-      background-position: center;
-      background-size: cover;
-      background-color: #333333;
-      color: white;
+     .ol-popup-closer {
+      text-decoration: none;
       position: absolute;
-      z-index: 1;
+      top: 2px;
+      right: 8px;
     }
 
-    #container {
+    .ol-popup-closer:after {
+      content: "✖";
+      color: #c3c3c3;
+    }
+       .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 20px;
+      z-index: 1000;
+    }
+
+    .hamburger {
+      position: fixed;
+      top: 5px;
+      left: 10px;
+      font-size: 24px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .close-btn {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      font-size: 24px;
+      cursor: pointer;
+      color: white;
+    }
+
+.sidebar {
+      display: none;
+      height: 100%;
+      width: 250px;
+      position: fixed;
+      text-align: center;
+      top: 0;
+      left: 0;
+      background-color: #333;
+      color: white;
+      padding: 20px 0;
+      z-index: 1000;
+    }
+
+    .sidebar.active {
+      display: block;
+    }
+
+    .sidebar ul li a {
+      display: block;
+      padding: 10px;
+      color: white;
+      text-decoration: none;
+      text-align: left;
+
+    }
+
+    .sidebar ul li a:hover {
+      background-color: #555;     
+    }
+
+   
+
+    
+
+    #map {
+      height: 900px;
+      width: 100%;
+    }
+
+      .my-location-btn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background-color: #333;
+      color: white;
+      font-size: 24px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    .my-location-btn:hover {
+      background-color: #555;
+    }
+
+     #container {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -90,13 +180,6 @@
       width: 100%;
       margin-top: 0px;
     }
-    
-
-    #map {
-      height: 900px;
-      width: 100%;
-    }
-
 
 
     .manuals {
@@ -1595,17 +1678,41 @@ function showNearestShelterText(nearestShelterName) {
 }
   </script>
 </head>
+
+  
 <body>
 <body topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" style="background-color:#F6F6F6">
-    <div class="menu" >
-      <nav class="clearfix">
-        <ul class="clearfix">
-          <li><a href="#">폭염 정보</a></li> <!--""<-여기 부분에 URL 작성하면 됨-->
-      </ul>
-      <a id="pull" href="#"></a>
-    </nav>
-    </div>
+      <div class="navbar">
+    <div class="hamburger" id="hamburger">&#9776;</div>
+    무더위쉼터 지도
+  </div>
+  <div id="sidebar" class="sidebar">
+    <div class="close-btn" id="closeBtn">&times;</div>
+    <h2>무더위쉼터 지도</h2>
+    <ul style="list-style-type:none">
+      <li><a href="./floodmap1.html">국가하천범람지도</a></li>
+      <li><a href="./floodmap2.html">지방하천범람지도</a></li>
+    </ul>
+    <br /><br /><br /><br /><br /><br /><br /> <br/>
+    <ul style="list-style-type:none">
+        <li style="text-align: left; padding: 0px 20px 0px 0px;"><h4>하천범람지도는<br />하천이 범람하거나 붕괴되는 상황을 가정하여 하천주변의 예상 침수범위와 침수 깊이를 표출한 지도 입니다.</h4></li>
+    </ul>
+    <br />
+    <h5>개발자</h5>
+    <p>미래지기</p>
+  </div>
+
+  <div id="popup" class="ol-popup">
+    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+    <div id="popup-content"></div>
+  </div>
+
   </body>
+
+  <div id="myLocationBtn">
+    <div class="my-location-btn">
+      <button onclick="moveToCurrentLocation()">📍</div>
+
   <div id="container">
     <h2>           </h2>
 
@@ -1613,6 +1720,11 @@ function showNearestShelterText(nearestShelterName) {
     <div class="map-container">
     <div id="map"></div>
     </div>
+
+    <div class="button-container">
+        <button onclick="findNextNearestShelter()">가까운 무더위쉼터 찾기</button>
+
+    </div>>
 
 
     <script>
