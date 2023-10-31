@@ -1539,7 +1539,7 @@ fetch('./HeatWaveShelter65.csv')
           if (nextShelter) {
 
             const currentLatitude = currentLocationMarker.getPosition().y;
-    const currentLongitude = currentLocationMarker.getPosition().x;
+            const currentLongitude = currentLocationMarker.getPosition().x;
 
             // 이전에 선택된 마커와 정보창 삭제
             if (currentLocationMarker) {
@@ -1719,12 +1719,12 @@ function showNearestShelterText(nearestShelterName) {
 
 
     <div class="map-container">
-    <div id="map"></div>
+      <div id="map"></div>
+      
     </div>
 
     <div class="button-container">
         <button onclick="findNextNearestShelter()">가까운 무더위쉼터 찾기</button>
-
     </div>
 
 
