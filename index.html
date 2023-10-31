@@ -62,8 +62,8 @@
       text-decoration: none;
     }
 
-    /*상단 배너 크기*/
-    .ol-popup-closer {
+/*상단 배너 크기*/
+     .ol-popup-closer {
       text-decoration: none;
       position: absolute;
       top: 2px;
@@ -74,7 +74,7 @@
       content: "✖";
       color: #c3c3c3;
     }
-        .navbar {
+       .navbar {
       position: fixed;
       top: 0;
       left: 0;
@@ -105,7 +105,7 @@
       color: white;
     }
 
-    .sidebar {
+.sidebar {
       display: none;
       height: 100%;
       width: 250px;
@@ -136,12 +136,16 @@
       background-color: #555;     
     }
 
+   
+
+    
+
     #map {
-      height: 900px;
+      height: 650px;
       width: 100%;
     }
 
-    .my-location-btn {
+      .my-location-btn {
       position: absolute;
       bottom: 20px;
       right: 20px;
@@ -159,6 +163,7 @@
     }
 
     .my-location-btn:hover {
+      position: absolute;
       background-color: #555;
     }
 
@@ -208,34 +213,10 @@
   <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6lcb5pk9bx" 
   charset="utf-8"></script>
 
-  <body>
-  <body topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" style="background-color:#F6F6F6">
-      <div class="navbar">
-    <div class="hamburger" id="hamburger">&#9776;</div>
-    무더위쉼터 지도
-  </div>
-  <div id="sidebar" class="sidebar">
-    <div class="close-btn" id="closeBtn">&times;</div>
-    <h2>무더위쉼터 지도</h2>
-    <ul style="list-style-type:none">
-      <li><a href="./floodmap1.html">국가하천범람지도</a></li>
-      <li><a href="./floodmap2.html">지방하천범람지도</a></li>
-    </ul>
-    <br /><br /><br /><br /><br /><br /><br /> <br/>
-    <ul style="list-style-type:none">
-        <li style="text-align: left; padding: 0px 20px 0px 0px;"><h4>하천범람지도는<br />하천이 범람하거나 붕괴되는 상황을 가정하여 하천주변의 예상 침수범위와 침수 깊이를 표출한 지도 입니다.</h4></li>
-    </ul>
-    <br />
-    <h5>개발자</h5>
-    <p>미래지기</p>
-  </div>
+  
 
-  <div id="popup" class="ol-popup">
-    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-    <div id="popup-content"></div>
-  </div>
 
-    
+
   <script>
     var map; // 지도 객체
     var markers = []; // 대피소 마커 배열
@@ -1473,20 +1454,21 @@ fetch('./HeatWaveShelter65.csv')
   displayMarkers(markers);
 })
 .catch(error => console.error('Error:', error));
-}
 
-function showError(error) {
-  alert("위치 정보를 가져올 수 없습니다.");
     }
 
-function showCurrentLocationMarker(latitude, longitude) {
-  const currentLocation = new naver.maps.LatLng(latitude, longitude);
+    function showError(error) {
+      alert("위치 정보를 가져올 수 없습니다.");
+    }
 
-  currentLocationMarker = new naver.maps.Marker({
-    position: currentLocation,
-    map: map,
-    title: "현재 위치"
-  });
+    function showCurrentLocationMarker(latitude, longitude) {
+      const currentLocation = new naver.maps.LatLng(latitude, longitude);
+
+      currentLocationMarker = new naver.maps.Marker({
+        position: currentLocation,
+        map: map,
+        title: "현재 위치"
+      });
 
       const infoWindowContent = "현재 위치";
       currentLocationInfoWindow = new naver.maps.InfoWindow({
@@ -1557,7 +1539,7 @@ function showCurrentLocationMarker(latitude, longitude) {
           if (nextShelter) {
 
             const currentLatitude = currentLocationMarker.getPosition().y;
-            const currentLongitude = currentLocationMarker.getPosition().x;
+    const currentLongitude = currentLocationMarker.getPosition().x;
 
             // 이전에 선택된 마커와 정보창 삭제
             if (currentLocationMarker) {
@@ -1699,23 +1681,50 @@ function showNearestShelterText(nearestShelterName) {
 </head>
 
   
+<body>
+<body topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" style="background-color:#F6F6F6">
+      <div class="navbar">
+    <div class="hamburger" id="hamburger">&#9776;</div>
+    무더위쉼터 지도
+  </div>
+  <div id="sidebar" class="sidebar">
+    <div class="close-btn" id="closeBtn">&times;</div>
+    <h2>무더위쉼터 지도</h2>
+    <ul style="list-style-type:none">
+      <li><a href="./floodmap1.html">국가하천범람지도</a></li>
+      <li><a href="./floodmap2.html">지방하천범람지도</a></li>
+    </ul>
+    <br /><br /><br /><br /><br /><br /><br /> <br/>
+    <ul style="list-style-type:none">
+        <li style="text-align: left; padding: 0px 20px 0px 0px;"><h4>하천범람지도는<br />하천이 범람하거나 붕괴되는 상황을 가정하여 하천주변의 예상 침수범위와 침수 깊이를 표출한 지도 입니다.</h4></li>
+    </ul>
+    <br />
+    <h5>개발자</h5>
+    <p>미래지기</p>
+  </div>
+
+  <div id="popup" class="ol-popup">
+    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+    <div id="popup-content"></div>
+  </div>
+
+  </body>
 
   <div id="myLocationBtn">
-    <button onclick="moveToCurrentLocation()">📍</div>
+    <div class="my-location-btn">
+      <button onclick="moveToCurrentLocation()">📍</div>
 
   <div id="container">
     <h2>           </h2>
 
 
     <div class="map-container">
-      <div class="my-location-btn">
-        <div id="map"></div>
-    
-      
+    <div id="map"></div>
     </div>
 
     <div class="button-container">
         <button onclick="findNextNearestShelter()">가까운 무더위쉼터 찾기</button>
+
     </div>
 
 
@@ -1731,11 +1740,14 @@ function showNearestShelterText(nearestShelterName) {
         alert("가장 가까운 무더위쉼터 정보를 가져올 수 없습니다.");
       }
     }
-    </script>
-  <div>
+  </script>
+
     <div id="currentLocationText"></div>
     <div id="nearestShelterText"></div>
   </div>
+  
+  </div>
 
+  </script>
 </body>
 </html>
